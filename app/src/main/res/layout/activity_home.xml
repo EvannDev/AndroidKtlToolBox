@@ -7,37 +7,37 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textWeb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/desWeb"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintEnd_toEndOf="@+id/imRWeb"
+        app:layout_constraintStart_toStartOf="@+id/imRWeb"
+        app:layout_constraintTop_toBottomOf="@+id/imRWeb" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textPerm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/desPerm"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintEnd_toEndOf="@+id/imRPerm"
+        app:layout_constraintStart_toStartOf="@+id/imRPerm"
+        app:layout_constraintTop_toBottomOf="@+id/imRPerm" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textCycleVie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/desCycle"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintEnd_toEndOf="@+id/imRCycleVie"
+        app:layout_constraintStart_toStartOf="@+id/imRCycleVie"
+        app:layout_constraintTop_toBottomOf="@+id/imRCycleVie" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imRPerm"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="95dp"
@@ -47,7 +47,7 @@
         app:srcCompat="@android:color/holo_red_dark" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imRCycleVie"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="245dp"
@@ -57,7 +57,7 @@
         app:srcCompat="@android:color/holo_red_dark" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imRWeb"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="245dp"
@@ -67,7 +67,7 @@
         app:srcCompat="@android:color/holo_red_dark" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imRSave"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="95dp"
@@ -92,50 +92,50 @@
         android:id="@+id/imCycleVie"
         android:layout_width="33dp"
         android:layout_height="33dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="@+id/imRCycleVie"
+        app:layout_constraintEnd_toEndOf="@+id/imRCycleVie"
+        app:layout_constraintStart_toStartOf="@+id/imRCycleVie"
+        app:layout_constraintTop_toTopOf="@+id/imRCycleVie"
         app:srcCompat="@android:drawable/stat_notify_chat" />
 
     <ImageView
         android:id="@+id/imSave"
         android:layout_width="33dp"
         android:layout_height="33dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/imRSave"
+        app:layout_constraintEnd_toEndOf="@+id/imRSave"
+        app:layout_constraintStart_toStartOf="@+id/imRSave"
+        app:layout_constraintTop_toTopOf="@+id/imRSave"
         app:srcCompat="@android:drawable/stat_notify_sdcard" />
 
     <ImageView
         android:id="@+id/imDown"
         android:layout_width="33dp"
         android:layout_height="33dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintBottom_toBottomOf="@+id/imRWeb"
+        app:layout_constraintEnd_toEndOf="@+id/imRWeb"
+        app:layout_constraintStart_toStartOf="@+id/imRWeb"
+        app:layout_constraintTop_toTopOf="@+id/imRWeb"
         app:srcCompat="@android:drawable/stat_sys_download" />
 
     <ImageView
         android:id="@+id/imPerm"
         android:layout_width="33dp"
         android:layout_height="33dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
+        app:layout_constraintBottom_toBottomOf="@+id/imRPerm"
+        app:layout_constraintEnd_toEndOf="@+id/imRPerm"
+        app:layout_constraintStart_toStartOf="@+id/imRPerm"
+        app:layout_constraintTop_toTopOf="@+id/imRPerm"
         app:srcCompat="@android:drawable/stat_sys_speakerphone" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/desSave"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintEnd_toEndOf="@+id/imRSave"
+        app:layout_constraintStart_toStartOf="@+id/imRSave"
+        app:layout_constraintTop_toBottomOf="@+id/imRSave" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
