@@ -5,5 +5,9 @@
     <string name="password">password</string>
     <string name="loginUser">username</string>
     <string name="logo">logo_isen</string>
-    <string name="welcome">Welcome!</string>
+    <string name="welcome">Bonjour!</string>
+    <string name="desSave">Sauvegarde</string>
+    <string name="desPerm">Permissions</string>
+    <string name="desCycle">Cycle de vie</string>
+    <string name="desWeb">Web</string>
 </resources>

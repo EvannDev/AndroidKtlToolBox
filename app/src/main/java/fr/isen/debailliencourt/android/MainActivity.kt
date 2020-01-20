@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
             val password = PassEdit.text.toString()
             val invalidMessage = "$username/$password is not valid"
 
-            if(username == "admin" && password=="123")
+            if(username == "admin" && password=="1234")
             {
-                Toast.makeText(this, "ok", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "valid", Toast.LENGTH_LONG).show()
             }
             else{
                 Toast.makeText(this, invalidMessage, Toast.LENGTH_LONG).show()
