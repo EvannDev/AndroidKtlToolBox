@@ -89,7 +89,7 @@
         app:layout_constraintVertical_bias="0.060000002" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/imCycleVie"
         android:layout_width="33dp"
         android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
@@ -99,9 +99,9 @@
         app:srcCompat="@android:drawable/stat_notify_chat" />
 
     <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="33"
-        android:layout_height="33"
+        android:id="@+id/imSave"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
@@ -109,9 +109,9 @@
         app:srcCompat="@android:drawable/stat_notify_sdcard" />
 
     <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="33"
-        android:layout_height="33"
+        android:id="@+id/imDown"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
         app:layout_constraintEnd_toEndOf="@+id/imageView7"
         app:layout_constraintStart_toStartOf="@+id/imageView7"
@@ -119,9 +119,9 @@
         app:srcCompat="@android:drawable/stat_sys_download" />
 
     <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="33"
-        android:layout_height="33"
+        android:id="@+id/imPerm"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
