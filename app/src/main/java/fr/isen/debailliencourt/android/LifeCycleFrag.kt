@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.fragment_life_cycle.*
 class LifeCycleFrag : Fragment() {
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
