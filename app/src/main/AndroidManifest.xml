@@ -12,7 +12,7 @@
         <activity android:name=".Activity.LifeCycle"></activity>
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.HomeActivity" />
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,17 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import fr.isen.debailliencourt.android.LifeCycleFrag
-import fr.isen.debailliencourt.android.LifeCycleFrag2
+import fr.isen.debailliencourt.android.Fragments.LifeCycleFrag
+import fr.isen.debailliencourt.android.Fragments.LifeCycleFrag2
 import fr.isen.debailliencourt.android.R
-import kotlinx.android.synthetic.main.activity_cycle_vie.*
+import kotlinx.android.synthetic.main.activity_life_cycle.*
 
 
 class LifeCycle : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cycle_vie)
+        setContentView(R.layout.activity_life_cycle)
 
         lifeCycleText.text = "onCreate"
 
