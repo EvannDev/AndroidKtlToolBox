@@ -6,7 +6,8 @@ import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_cycle_vie.*
 
-class CycleVie : AppCompatActivity() {
+
+class LifeCycle : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

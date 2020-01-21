@@ -12,7 +12,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
 
-        val cycleIntent : Intent =  Intent(this,CycleVie::class.java)
+        val cycleIntent : Intent =  Intent(this,LifeCycle::class.java)
 
         imCycleVie.setOnClickListener{
             startActivity(cycleIntent)
