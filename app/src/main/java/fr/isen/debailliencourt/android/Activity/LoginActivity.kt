@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
     companion object{
         private const val GOOD_ID: String = "admin"
         private const val GOOD_PASS: String  ="1234"
-        private const val LOGIN_PREF: String = "login"
+        const val LOGIN_PREF: String = "login"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
             goToHome()
         }
 
-        button.setOnClickListener(){
+        button.setOnClickListener{
             doLogin()
         }
     }
@@ -59,12 +59,6 @@ class LoginActivity : AppCompatActivity() {
         val editor : SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString("id",identifiant)
         editor.putString("mdp",mdp)
-        editor.apply()
-    }
-
-    private fun logout(){
-        val editor : SharedPreferences.Editor = sharedPreferences.edit()
-        editor.clear()
         editor.apply()
     }
 
