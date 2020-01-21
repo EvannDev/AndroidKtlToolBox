@@ -3,32 +3,23 @@ package fr.isen.debailliencourt.android
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_cycle_vie.*
-import kotlinx.android.synthetic.main.fragment_life_cycle.*
 
 
-class LifeCycleFrag : Fragment() {
-
-
-
+class LifeCycleFrag2 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("TAG", "onCreateView")
-        return inflater.inflate(R.layout.fragment_life_cycle, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_life_cycle_frag2, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragText.text= "onViewCreated"
     }
-
-
 }
