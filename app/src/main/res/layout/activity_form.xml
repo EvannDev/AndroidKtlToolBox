@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.FormActivity">
+    tools:context=".activity.FormActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Surname"
@@ -52,14 +52,15 @@
 
     <TextView
         android:id="@+id/text_view_date_1"
-        android:layout_width="163dp"
-        android:layout_height="94dp"
-        android:padding="20dp"
-        android:textSize="35dp"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:paddingStart="20dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/button_date_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Surname" />
+        app:layout_constraintTop_toBottomOf="@+id/Surname"
+        app:layout_constraintVertical_bias="0.38" />
 
     <Button
         android:id="@+id/button_date_1"
@@ -69,7 +70,8 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Surname" />
+        app:layout_constraintTop_toBottomOf="@+id/Surname"
+        app:layout_constraintVertical_bias="0.63" />
 
     <Button
         android:id="@+id/buttonSave"

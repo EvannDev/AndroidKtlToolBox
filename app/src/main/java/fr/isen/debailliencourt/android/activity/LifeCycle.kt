@@ -1,11 +1,11 @@
-package fr.isen.debailliencourt.android.Activity
+package fr.isen.debailliencourt.android.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import fr.isen.debailliencourt.android.Fragments.LifeCycleFrag
-import fr.isen.debailliencourt.android.Fragments.LifeCycleFrag2
+import fr.isen.debailliencourt.android.fragments.LifeCycleFrag
+import fr.isen.debailliencourt.android.fragments.LifeCycleFrag2
 import fr.isen.debailliencourt.android.R
 import kotlinx.android.synthetic.main.activity_life_cycle.*
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.LifeCycle">
+    tools:context=".activity.LifeCycle">
 
     <TextView
         android:id="@+id/lifeCycleText"
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="fr.isen.debailliencourt.android.Fragments.LifeCycleFrag"
+        android:name="fr.isen.debailliencourt.android.fragments.LifeCycleFrag"
         android:layout_width="222dp"
         android:layout_height="128dp"
         app:layout_constraintBottom_toTopOf="@+id/lifeCycleText"
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="fr.isen.debailliencourt.android.Fragments.LifeCycleFrag2"
+        android:name="fr.isen.debailliencourt.android.fragments.LifeCycleFrag2"
         android:layout_width="222dp"
         android:layout_height="128dp"
         app:layout_constraintBottom_toBottomOf="parent"

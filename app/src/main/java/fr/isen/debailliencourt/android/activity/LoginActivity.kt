@@ -1,4 +1,4 @@
-package fr.isen.debailliencourt.android.Activity
+package fr.isen.debailliencourt.android.activity
 
 import android.content.Context
 import android.content.Intent

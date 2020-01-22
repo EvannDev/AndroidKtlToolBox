@@ -1,4 +1,4 @@
-package fr.isen.debailliencourt.android.Fragments
+package fr.isen.debailliencourt.android.fragments
 
 import android.os.Bundle
 import android.util.Log
