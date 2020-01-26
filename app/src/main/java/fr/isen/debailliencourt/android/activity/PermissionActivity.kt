@@ -98,7 +98,7 @@ class PermissionActivity : AppCompatActivity() {
             setTitle("Choisir:")
             setItems(items) { dialog, which ->
                 if(items[which] == "Camera"){
-                    dispatchTakePictureIntent()
+                    pickkImageFromCamera()
                 }
                 else{
                     pickImageFromGallery()
@@ -117,7 +117,7 @@ class PermissionActivity : AppCompatActivity() {
         startActivityForResult(intent, IMAGE_PICK_REQUEST)
     }
 
-    private fun dispatchTakePictureIntent() {
+    private fun pickkImageFromCamera() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
                 startActivityForResult(takePictureIntent, CAMERA_PICK_REQUEST)
