@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pictCameraPerm"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.PermissionActivity">
@@ -20,13 +21,14 @@
         app:layout_constraintVertical_bias="0.07999998" />
 
     <ImageView
-        android:id="@+id/pictureFacePhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/pictGalleryPerm"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@android:drawable/ic_menu_camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlePerm"
-        app:layout_constraintVertical_bias="0.19"
-        tools:src="@tools:sample/avatars[0]" />
+        app:layout_constraintVertical_bias="0.13999999" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
