@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences(LoginActivity.LOGIN_PREF, Context.MODE_PRIVATE)
 
         val cycleIntent : Intent =  Intent(this,
-            LifeCycle::class.java)
+            LifeCycleActivity::class.java)
 
         imCycleVie.setOnClickListener{
             startActivity(cycleIntent)

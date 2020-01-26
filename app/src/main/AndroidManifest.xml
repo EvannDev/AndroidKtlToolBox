@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.FormActivity"></activity>
-        <activity android:name=".activity.LifeCycle" />
+        <activity android:name=".activity.LifeCycleActivity" />
         <activity android:name=".activity.HomeActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>

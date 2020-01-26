@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LifeCycle">
+    tools:context=".activity.LifeCycleActivity">
 
     <TextView
         android:id="@+id/lifeCycleText"
@@ -15,38 +15,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <fragment
-        android:id="@+id/fragment"
-        android:name="fr.isen.debailliencourt.android.fragments.LifeCycleFrag"
-        android:layout_width="222dp"
-        android:layout_height="128dp"
-        app:layout_constraintBottom_toTopOf="@+id/lifeCycleText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="fr.isen.debailliencourt.android.fragments.LifeCycleFrag2"
-        android:layout_width="222dp"
-        android:layout_height="128dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lifeCycleText" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.632" />
 
     <Button
         android:id="@+id/buttonFrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:text="@string/buttonFrag"
-        app:layout_constraintBottom_toTopOf="@+id/fragment2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lifeCycleText"
-        app:layout_constraintVertical_bias="0.462" />
+        app:layout_constraintTop_toBottomOf="@+id/lifeCycleText" />
+
+    <LinearLayout
+        android:id="@+id/layoutFragment"
+        android:layout_width="261dp"
+        android:layout_height="238dp"
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toTopOf="@+id/lifeCycleText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

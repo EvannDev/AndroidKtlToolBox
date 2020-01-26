@@ -12,6 +12,11 @@ import kotlinx.android.synthetic.main.fragment_life_cycle.*
 
 class LifeCycleFrag : Fragment() {
 
+    fun cycle(state: String) {
+        Log.d("--FRAGMENT", state)
+        textState?.text = state
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +28,6 @@ class LifeCycleFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragText.text= "onViewCreated"
     }
 
 

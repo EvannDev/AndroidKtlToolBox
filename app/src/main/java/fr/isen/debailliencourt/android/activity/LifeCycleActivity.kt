@@ -10,7 +10,7 @@ import fr.isen.debailliencourt.android.R
 import kotlinx.android.synthetic.main.activity_life_cycle.*
 
 
-class LifeCycle : AppCompatActivity() {
+class LifeCycleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,16 +21,12 @@ class LifeCycle : AppCompatActivity() {
         val frag1 = LifeCycleFrag()
         val frag2 = LifeCycleFrag2()
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.activity_Life_Cycle,frag1)
+        transaction.add(R.id.layoutFragment,frag1)
         transaction.commit()
 
         buttonFrag.setOnClickListener{
-            if(frag1.isResumed){
-                supportFragmentManager.beginTransaction().add(R.id.activity_Life_Cycle,frag2).commit()
-            }
-            else if(frag2.isResumed){
-                supportFragmentManager.beginTransaction().add(R.id.activity_Life_Cycle,frag1).commit()
-            }
+            supportFragmentManager.beginTransaction().replace(R.id.layoutFragment, (if (frag1.isVisible) frag2 else frag1)).commit()
+
         }
     }
 

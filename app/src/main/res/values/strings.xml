@@ -1,9 +1,14 @@
 <resources>
+    <!-- Manifest -->
     <string name="app_name">Log ISEN</string>
+
+    <!-- Login -->
     <string name="button">Login</string>
     <string name="connexion">LOG IN</string>
     <string name="password">password</string>
     <string name="loginUser">username</string>
+
+    <!-- Home -->
     <string name="logo">logo_isen</string>
     <string name="welcome">Bonjour!</string>
     <string name="desSave">Sauvegarde</string>
@@ -11,8 +16,16 @@
     <string name="desCycle">Cycle de vie</string>
     <string name="desWeb">Web</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment1">Frag1</string>
-    <string name="hello_blank_fragment2">Frag2</string>
-    <string name="buttonFrag">buttonFrag</string>
+    <!-- Life Cycle -->
+    <string name="textFrag1">Frag1</string>
+    <string name="textFrag2">Frag2</string>
+    <string name="buttonFrag">Switch</string>
+
+    <!-- Form -->
+    <string name="form_alert">Data</string>
+    <string name="readForm">Read</string>
+    <string name="saveForm">Save</string>
+    <string name="changeDateForm">Change Date</string>
+    <string name="titleForm">Formulaire</string>
+
 </resources>

@@ -22,6 +22,5 @@ class LifeCycleFrag2 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragText.text= "onViewCreated"
     }
 }
