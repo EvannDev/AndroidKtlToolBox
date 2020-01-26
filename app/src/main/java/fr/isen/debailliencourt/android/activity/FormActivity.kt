@@ -60,7 +60,7 @@ class FormActivity : AppCompatActivity() {
                 years = (days / 365)
             }
 
-            alert.setMessage("Surname: ${user.surname}\nName: ${user.name}\nAge: $years").create().show()
+            alert.setMessage("Prénom: ${user.surname}\nNom: ${user.name}\nAge: $years").create().show()
         }
 
         buttonSave.setOnClickListener {

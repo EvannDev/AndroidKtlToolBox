@@ -17,15 +17,19 @@ import androidx.annotation.RequiresApi
 import fr.isen.debailliencourt.android.R
 import kotlinx.android.synthetic.main.activity_permissions.*
 import android.os.Looper
+import  android.app.AlertDialog
+import android.content.DialogInterface
+import android.graphics.Camera
 
 import android.provider.MediaStore
+import android.view.View
 
 class PermissionActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
 
     companion object{
         //Permission code
-        private const val IMAGE_PICK_CODE = 1000
+        private const val IMAGE_PICK_REQUEST = 1000
         private const val CAMERA_PICK_REQUEST = 4444
         private const val CONTACT_PICK_REQUEST = 1001
 
@@ -81,11 +85,36 @@ class PermissionActivity : AppCompatActivity() {
         )
     }
 
+    private val backButtonClick = { dialog: DialogInterface, which: Int ->
+        Toast.makeText(applicationContext, "Aucune photo choisie", Toast.LENGTH_SHORT).show()
+    }
+
+    fun withItems() {
+
+        val items = arrayOf("Camera", "Galerie")
+        val builder = AlertDialog.Builder(this)
+        with(builder)
+        {
+            setTitle("Choisir:")
+            setItems(items) { dialog, which ->
+                if(items[which] == "Camera"){
+                    dispatchTakePictureIntent()
+                }
+                else{
+                    pickImageFromGallery()
+                }
+            }
+
+            setPositiveButton("Retour", backButtonClick)
+            show()
+        }
+    }
+
     private fun pickImageFromGallery() {
         //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
+        startActivityForResult(intent, IMAGE_PICK_REQUEST)
     }
 
     private fun dispatchTakePictureIntent() {
@@ -105,13 +134,13 @@ class PermissionActivity : AppCompatActivity() {
         getLastLocation()
 
         pictGalleryPerm.setOnClickListener{
-                dispatchTakePictureIntent()
+                withItems()
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when(requestCode){
-            PermissionActivity.PERMISSION_CODE -> {
+            PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED){
                     //permission from popup granted
@@ -127,7 +156,7 @@ class PermissionActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_REQUEST){
             pictGalleryPerm.setImageURI(data?.data)
         }
 
