@@ -32,5 +32,7 @@
 
     <!-- Perm -->
     <string name="titlePerm">Accès aux informations Android</string>
+    <string name="textLongitude">Longitude:</string>
+    <string name="textLatitude">Latitude:</string>
 
 </resources>

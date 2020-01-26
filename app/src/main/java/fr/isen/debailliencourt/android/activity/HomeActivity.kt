@@ -1,8 +1,11 @@
 package fr.isen.debailliencourt.android.activity
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,6 +13,15 @@ import fr.isen.debailliencourt.android.R
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
+
+    companion object{
+        //camera request code
+        private const val REQUEST_CAMERA: Int  = 1
+        //image pick code
+        private const val IMAGE_PICK_CODE = 1000;
+        //Permission code
+        private const val PERMISSION_CODE = 1001;
+    }
 
     lateinit var sharedPreferences: SharedPreferences
 
@@ -26,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
             startActivity(cycleIntent)
         }
 
-
         val saveIntent =  Intent(this,
             FormActivity::class.java)
 
@@ -38,7 +49,29 @@ class HomeActivity : AppCompatActivity() {
             PermissionActivity::class.java)
 
         layoutPerm.setOnClickListener{
-            startActivity(permIntent)
+            //system OS is > Marshmallow
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                    PackageManager.PERMISSION_DENIED){
+                    //permission denied
+                    val permissions = arrayOf(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                    //show popup to request runtime permission
+                    requestPermissions(permissions, PermissionActivity.PERMISSION_CODE)
+                }
+                else{
+                    //permission already granted
+                    startActivity(permIntent)
+                }
+            }
+            else{
+                //system OS is < Marshmallow
+                startActivity(permIntent)
+            }
+
         }
 
 
@@ -47,6 +80,7 @@ class HomeActivity : AppCompatActivity() {
             doLogout()
         }
     }
+
 
     private fun doLogout(){
         val editor : SharedPreferences.Editor = sharedPreferences.edit()
