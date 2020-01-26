@@ -1,4 +1,4 @@
-package fr.isen.debailliencourt.android
+package fr.isen.debailliencourt.android.objects
 
 class DataUser {
     var name: String = ""

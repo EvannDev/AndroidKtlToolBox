@@ -28,4 +28,7 @@
     <string name="changeDateForm">Change Date</string>
     <string name="titleForm">Formulaire</string>
 
+    <!-- Perm -->
+    <string name="titlePerm">Accès aux informations Android</string>
+
 </resources>

@@ -12,9 +12,9 @@ import kotlinx.android.synthetic.main.activity_form.*
 import android.app.AlertDialog
 import android.util.Log
 import android.widget.Toast
-import fr.isen.debailliencourt.android.JSON
+import fr.isen.debailliencourt.android.objects.JSON
 import fr.isen.debailliencourt.android.R
-import fr.isen.debailliencourt.android.DataUser
+import fr.isen.debailliencourt.android.objects.DataUser
 
 class FormActivity : AppCompatActivity() {
 
@@ -65,7 +65,13 @@ class FormActivity : AppCompatActivity() {
 
         buttonSave.setOnClickListener {
             Toast.makeText(this, "Save", Toast.LENGTH_LONG)
-            Log.d("TAG", JSON(cacheDir.absolutePath).save(DataUser(textInputName.text.toString(), textInputSurname.text.toString(), text_view_date_1.text.toString())).load().toString())
+            Log.d("TAG", JSON(cacheDir.absolutePath).save(
+                DataUser(
+                    textInputName.text.toString(),
+                    textInputSurname.text.toString(),
+                    text_view_date_1.text.toString()
+                )
+            ).load().toString())
         }
 
         buttonDate!!.setOnClickListener {

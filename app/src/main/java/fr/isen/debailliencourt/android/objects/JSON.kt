@@ -1,4 +1,4 @@
-package fr.isen.debailliencourt.android
+package fr.isen.debailliencourt.android.objects
 
 import com.google.gson.Gson
 import java.io.File
