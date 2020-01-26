@@ -3,10 +3,10 @@
     <string name="app_name">Log ISEN</string>
 
     <!-- Login -->
-    <string name="button">Login</string>
-    <string name="connexion">LOG IN</string>
-    <string name="password">password</string>
-    <string name="loginUser">username</string>
+    <string name="button">connexion</string>
+    <string name="connexion">Connexion</string>
+    <string name="password">mot de passe</string>
+    <string name="loginUser">identifiant</string>
 
     <!-- Home -->
     <string name="logo">logo_isen</string>
@@ -17,15 +17,17 @@
     <string name="desWeb">Web</string>
 
     <!-- Life Cycle -->
-    <string name="textFrag1">Frag1</string>
-    <string name="textFrag2">Frag2</string>
-    <string name="buttonFrag">Switch</string>
+    <string name="textFrag1">Fragement 1</string>
+    <string name="textFrag2">Fragement 2</string>
+    <string name="buttonFrag">Changer</string>
 
     <!-- Form -->
-    <string name="form_alert">Data</string>
-    <string name="readForm">Read</string>
-    <string name="saveForm">Save</string>
-    <string name="changeDateForm">Change Date</string>
+    <string name="form_alert">Données</string>
+    <string name="nameForm">Prénom</string>
+    <string name="surnameForm">Nom</string>
+    <string name="readForm">Lire</string>
+    <string name="saveForm">Sauvegarder</string>
+    <string name="changeDateForm">Changer date</string>
     <string name="titleForm">Formulaire</string>
 
     <!-- Perm -->

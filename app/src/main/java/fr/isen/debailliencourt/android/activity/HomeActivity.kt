@@ -19,31 +19,28 @@ class HomeActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(LoginActivity.LOGIN_PREF, Context.MODE_PRIVATE)
 
-        val cycleIntent : Intent =  Intent(this,
+        val cycleIntent =  Intent(this,
             LifeCycleActivity::class.java)
 
-        imCycleVie.setOnClickListener{
-            startActivity(cycleIntent)
-        }
-        imRCycleVie.setOnClickListener{
-            startActivity(cycleIntent)
-        }
-        textCycleVie.setOnClickListener{
+        layoutLifeCycle.setOnClickListener{
             startActivity(cycleIntent)
         }
 
-        val saveIntent : Intent =  Intent(this,
+
+        val saveIntent =  Intent(this,
             FormActivity::class.java)
 
-        imSave.setOnClickListener{
+        layoutSave.setOnClickListener{
             startActivity(saveIntent)
         }
-        imRSave.setOnClickListener{
-            startActivity(saveIntent)
+
+        val permIntent =  Intent(this,
+            PermissionActivity::class.java)
+
+        layoutPerm.setOnClickListener{
+            startActivity(permIntent)
         }
-        textSave.setOnClickListener{
-            startActivity(saveIntent)
-        }
+
 
         buttonLogOut.setOnClickListener{
             Toast.makeText(this, "Logout", Toast.LENGTH_LONG)
