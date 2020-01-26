@@ -51,14 +51,20 @@ class HomeActivity : AppCompatActivity() {
         layoutPerm.setOnClickListener{
             //system OS is > Marshmallow
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_DENIED){
+                if (checkSelfPermission(Manifest.permission.CAMERA) ==                  PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==   PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==  PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==    PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) ==  PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.READ_CONTACTS) ==           PackageManager.PERMISSION_DENIED){
+
                     //permission denied
                     val permissions = arrayOf(
                         Manifest.permission.CAMERA,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_FINE_LOCATION)
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.READ_CONTACTS)
                     //show popup to request runtime permission
                     requestPermissions(permissions, PermissionActivity.PERMISSION_CODE)
                 }
@@ -73,7 +79,6 @@ class HomeActivity : AppCompatActivity() {
             }
 
         }
-
 
         buttonLogOut.setOnClickListener{
             Toast.makeText(this, "Logout", Toast.LENGTH_LONG)

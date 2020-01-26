@@ -1,10 +1,10 @@
 package fr.isen.debailliencourt.android.activity
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.location.Location
 import android.location.LocationManager
 import android.location.LocationManager.GPS_PROVIDER
@@ -17,16 +17,19 @@ import androidx.annotation.RequiresApi
 import fr.isen.debailliencourt.android.R
 import kotlinx.android.synthetic.main.activity_permissions.*
 import android.os.Looper
-import androidx.core.app.ActivityCompat
+
+import android.provider.MediaStore
 
 class PermissionActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
 
     companion object{
-        //image pick code
-        private const val IMAGE_PICK_CODE = 1000
         //Permission code
-        const val PERMISSION_CODE = 1001
+        private const val IMAGE_PICK_CODE = 1000
+        private const val CAMERA_PICK_REQUEST = 4444
+        private const val CONTACT_PICK_REQUEST = 1001
+
+        const val PERMISSION_CODE = 1002
     }
 
     lateinit var mFusedLocationClient: FusedLocationProviderClient
@@ -78,12 +81,19 @@ class PermissionActivity : AppCompatActivity() {
         )
     }
 
-
     private fun pickImageFromGallery() {
         //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                startActivityForResult(takePictureIntent, CAMERA_PICK_REQUEST)
+            }
+        }
     }
 
 
@@ -95,7 +105,7 @@ class PermissionActivity : AppCompatActivity() {
         getLastLocation()
 
         pictGalleryPerm.setOnClickListener{
-                pickImageFromGallery()
+                dispatchTakePictureIntent()
         }
     }
 
@@ -115,11 +125,15 @@ class PermissionActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             pictGalleryPerm.setImageURI(data?.data)
+        }
+
+        else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PICK_REQUEST){
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            pictGalleryPerm.setImageBitmap(imageBitmap)
         }
     }
 }
