@@ -4,6 +4,7 @@
       <w>aaaa</w>
       <w>accès</w>
       <w>bonjour</w>
+      <w>choisir</w>
       <w>cliqué</w>
       <w>debailliencourt</w>
       <w>données</w>
@@ -16,9 +17,12 @@
       <w>isen</w>
       <w>prénom</w>
       <w>refusée</w>
+      <w>retour</w>
       <w>sauvegarde</w>
       <w>sauvegarder</w>
+      <w>sauvegardé</w>
       <w>textview</w>
+      <w>valide</w>
     </words>
   </dictionary>
 </component>

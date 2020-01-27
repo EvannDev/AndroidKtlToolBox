@@ -75,4 +75,23 @@
         app:layout_constraintStart_toStartOf="@+id/valueLatitude"
         app:layout_constraintTop_toTopOf="@+id/textLongitude" />
 
+    <ListView
+        android:id="@+id/listViewContacts"
+        android:layout_width="409dp"
+        android:layout_height="515dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pictGalleryPerm" />
+
+    <TextView
+        android:id="@android:id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/listViewContacts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/listViewContacts" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

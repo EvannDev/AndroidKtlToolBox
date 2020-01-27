@@ -19,10 +19,11 @@ import kotlinx.android.synthetic.main.activity_permissions.*
 import android.os.Looper
 import  android.app.AlertDialog
 import android.content.DialogInterface
-import android.graphics.Camera
+import android.provider.ContactsContract
 
 import android.provider.MediaStore
-import android.view.View
+import android.util.Log
+import android.widget.ListView
 
 class PermissionActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
@@ -34,6 +35,7 @@ class PermissionActivity : AppCompatActivity() {
         private const val CONTACT_PICK_REQUEST = 1001
 
         const val PERMISSION_CODE = 1002
+
     }
 
     lateinit var mFusedLocationClient: FusedLocationProviderClient
@@ -89,7 +91,7 @@ class PermissionActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, "Aucune photo choisie", Toast.LENGTH_SHORT).show()
     }
 
-    fun withItems() {
+    private fun withItems() {
 
         val items = arrayOf("Camera", "Galerie")
         val builder = AlertDialog.Builder(this)
@@ -98,13 +100,12 @@ class PermissionActivity : AppCompatActivity() {
             setTitle("Choisir:")
             setItems(items) { dialog, which ->
                 if(items[which] == "Camera"){
-                    pickkImageFromCamera()
+                    pickImageFromCamera()
                 }
                 else{
                     pickImageFromGallery()
                 }
             }
-
             setPositiveButton("Retour", backButtonClick)
             show()
         }
@@ -117,7 +118,7 @@ class PermissionActivity : AppCompatActivity() {
         startActivityForResult(intent, IMAGE_PICK_REQUEST)
     }
 
-    private fun pickkImageFromCamera() {
+    private fun pickImageFromCamera() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
                 startActivityForResult(takePictureIntent, CAMERA_PICK_REQUEST)
@@ -129,6 +130,7 @@ class PermissionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permissions)
+
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         getLastLocation()

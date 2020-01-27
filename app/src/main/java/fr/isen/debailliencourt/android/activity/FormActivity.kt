@@ -6,22 +6,23 @@ import android.widget.TextView
 import android.widget.Button
 import java.util.*
 import android.app.DatePickerDialog
-import android.widget.DatePicker
 import java.text.SimpleDateFormat
 import kotlinx.android.synthetic.main.activity_form.*
 import android.app.AlertDialog
-import android.util.Log
+import android.widget.DatePicker
 import android.widget.Toast
-import fr.isen.debailliencourt.android.objects.JSON
 import fr.isen.debailliencourt.android.R
-import fr.isen.debailliencourt.android.objects.DataUser
+import org.json.JSONObject
+import java.io.File
+
 
 class FormActivity : AppCompatActivity() {
 
     var buttonDate: Button? = null
-    var textviewDate: TextView? = null
+    var textViewDate: TextView? = null
 
-    var cal = Calendar.getInstance()
+
+    private var cal = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,50 +32,38 @@ class FormActivity : AppCompatActivity() {
         alert.setTitle(R.string.form_alert)
 
 
-        textviewDate = this.text_view_date_1
+        textViewDate = this.text_view_date_1
         buttonDate = this.button_date_1
 
-        textviewDate!!.text = "--/--/----"
+        textViewDate!!.text = "--/--/----"
 
-        // create an OnDateSetListener
         val dateSetListener = DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, day: Int ->
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, month)
-                cal.set(Calendar.DAY_OF_MONTH, day)
-                updateDateInView()
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, month)
+            cal.set(Calendar.DAY_OF_MONTH, day)
+            updateDateInView()
         }
 
+
         buttonRead.setOnClickListener{
-            val user = JSON(cacheDir.absolutePath).load()
-
-            val birthday = SimpleDateFormat("dd/MM/yyyy").parse(user.birthday).time
-            val now = Calendar.getInstance().timeInMillis
-
-            var years = 0L
-            if (now > birthday) {
-                val diff = now - birthday
-                val seconds = diff / 1000
-                val minutes = seconds / 60
-                val hours = minutes / 60
-                val days = hours / 24
-                years = (days / 365)
-            }
-
-            alert.setMessage("Prénom: ${user.surname}\nNom: ${user.name}\nAge: $years").create().show()
+            showDataFromFile()
         }
 
         buttonSave.setOnClickListener {
-            Toast.makeText(this, "Save", Toast.LENGTH_LONG)
-            Log.d("TAG", JSON(cacheDir.absolutePath).save(
-                DataUser(
-                    textInputName.text.toString(),
-                    textInputSurname.text.toString(),
-                    text_view_date_1.text.toString()
+            saveDataToFile(
+                textInputSurname.text.toString(),
+                textInputName.text.toString(),
+                text_view_date_1.text.toString(),
+                getAge(
+                    cal.get(Calendar.DAY_OF_MONTH),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.YEAR)
+
                 )
-            ).load().toString())
+            )
         }
 
-        buttonDate!!.setOnClickListener {
+        textViewDate!!.setOnClickListener {
             DatePickerDialog(this@FormActivity,
                 dateSetListener,
                 cal.get(Calendar.YEAR),
@@ -82,10 +71,65 @@ class FormActivity : AppCompatActivity() {
                 cal.get(Calendar.DAY_OF_MONTH)).show()
         }
     }
+
+    private fun saveDataToFile(lastName: String, firstName: String, date: String, age: Int){
+        val data = "{$LAST_NAME_KEY: '$lastName', $FIRST_NAME_KEY: '$firstName', $DATE_KEY: '$date', $AGE_KEY: '$age'}"
+
+        File(cacheDir.absolutePath + JSON_FILE).writeText(data)
+        Toast.makeText(this, "Données sauvegardé", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showDataFromFile(){
+        val dataJson: String = File(cacheDir.absolutePath + JSON_FILE).readText()
+
+        if(dataJson.isNotEmpty()){
+            val jsonObject = JSONObject(dataJson)
+
+            val strDate: String = jsonObject.optString(DATE_KEY)
+            val strLastName: String = jsonObject.optString(LAST_NAME_KEY)
+            val strFirstName: String = jsonObject.optString(FIRST_NAME_KEY)
+            val strAge: String = jsonObject.optString(AGE_KEY)
+
+            AlertDialog.Builder(this)
+                .setTitle("Données")
+                .setMessage("Nom: $strLastName\n Prénom: $strFirstName\n Date : $strDate\n Age : $strAge")
+                .create()
+                .show()
+        }
+    }
+
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.FRENCH)
-        textviewDate!!.text = sdf.format(cal.getTime())
+        textViewDate!!.text = sdf.format(cal.getTime())
+    }
+
+    private fun getAge(day: Int, month: Int, year: Int):Int{
+        val dateOfBirth = Calendar.getInstance()
+        val today = Calendar.getInstance()
+
+        dateOfBirth.set(year,month,day)
+
+        var age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR)
+
+        if((today.get(Calendar.DAY_OF_MONTH) < dateOfBirth.get(Calendar.DAY_OF_MONTH) &&
+            today.get(Calendar.MONTH) == dateOfBirth.get(Calendar.MONTH)) ||
+            (today.get(Calendar.MONTH) < dateOfBirth.get(Calendar.MONTH)))
+        {
+            return age -1
+        }
+        else{
+            return age
+        }
+
+    }
+
+    companion object{
+        private const val JSON_FILE = "data.json"
+        private const val LAST_NAME_KEY = "lastName"
+        private const val FIRST_NAME_KEY = "firstName"
+        private const val DATE_KEY = "date"
+        private const val AGE_KEY = "age"
     }
 
 
