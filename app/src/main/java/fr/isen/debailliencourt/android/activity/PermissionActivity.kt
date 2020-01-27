@@ -20,10 +20,9 @@ import android.os.Looper
 import  android.app.AlertDialog
 import android.content.DialogInterface
 import android.provider.ContactsContract
-
 import android.provider.MediaStore
-import android.util.Log
-import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
+
 
 class PermissionActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
@@ -35,10 +34,15 @@ class PermissionActivity : AppCompatActivity() {
         private const val CONTACT_PICK_REQUEST = 1001
 
         const val PERMISSION_CODE = 1002
-
     }
 
+
     lateinit var mFusedLocationClient: FusedLocationProviderClient
+
+    private val backButtonClick = { dialog: DialogInterface, which: Int ->
+        Toast.makeText(applicationContext, "Aucune photo choisie", Toast.LENGTH_SHORT).show()
+    }
+
 
     private fun getLastLocation() {
         if (isLocationEnabled()) {
@@ -87,10 +91,6 @@ class PermissionActivity : AppCompatActivity() {
         )
     }
 
-    private val backButtonClick = { dialog: DialogInterface, which: Int ->
-        Toast.makeText(applicationContext, "Aucune photo choisie", Toast.LENGTH_SHORT).show()
-    }
-
     private fun withItems() {
 
         val items = arrayOf("Camera", "Galerie")
@@ -126,11 +126,31 @@ class PermissionActivity : AppCompatActivity() {
         }
     }
 
+    private fun displayContacts(){
+        val users: ArrayList<String> = ArrayList()
+
+        val cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null,null)
+
+        while(cursor!!.moveToNext()){
+            users.add(Contact(cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
+                                    cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))).name)
+
+            users.add(Contact(cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
+                cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))).phone)
+        }
+
+        cursor.close()
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = UsersAdapter(users)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permissions)
 
+        displayContacts()
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         getLastLocation()
@@ -138,6 +158,7 @@ class PermissionActivity : AppCompatActivity() {
         pictGalleryPerm.setOnClickListener{
                 withItems()
         }
+
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -165,6 +186,9 @@ class PermissionActivity : AppCompatActivity() {
         else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PICK_REQUEST){
             val imageBitmap = data?.extras?.get("data") as Bitmap
             pictGalleryPerm.setImageBitmap(imageBitmap)
+        }
+
+        else if (resultCode == Activity.RESULT_OK && requestCode == CONTACT_PICK_REQUEST){
         }
     }
 }

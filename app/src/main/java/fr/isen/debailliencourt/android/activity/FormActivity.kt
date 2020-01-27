@@ -33,7 +33,6 @@ class FormActivity : AppCompatActivity() {
 
 
         textViewDate = this.text_view_date_1
-        buttonDate = this.button_date_1
 
         textViewDate!!.text = "--/--/----"
 
@@ -63,7 +62,7 @@ class FormActivity : AppCompatActivity() {
             )
         }
 
-        textViewDate!!.setOnClickListener {
+        textViewDate?.setOnClickListener {
             DatePickerDialog(this@FormActivity,
                 dateSetListener,
                 cal.get(Calendar.YEAR),
