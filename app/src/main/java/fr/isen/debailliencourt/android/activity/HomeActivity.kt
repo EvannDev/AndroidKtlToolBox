@@ -9,6 +9,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import fr.isen.debailliencourt.android.R
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -50,13 +52,12 @@ class HomeActivity : AppCompatActivity() {
 
         layoutPerm.setOnClickListener{
             //system OS is > Marshmallow
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (checkSelfPermission(Manifest.permission.CAMERA) ==                  PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==   PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==  PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==    PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) ==  PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.READ_CONTACTS) ==           PackageManager.PERMISSION_DENIED){
+                if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) ==                  PackageManager.PERMISSION_DENIED ||
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) ==   PackageManager.PERMISSION_DENIED ||
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) ==  PackageManager.PERMISSION_DENIED ||
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) ==    PackageManager.PERMISSION_DENIED ||
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) ==  PackageManager.PERMISSION_DENIED ||
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.READ_CONTACTS) ==           PackageManager.PERMISSION_DENIED){
 
                     //permission denied
                     val permissions = arrayOf(
@@ -66,18 +67,12 @@ class HomeActivity : AppCompatActivity() {
                         Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.READ_CONTACTS)
                     //show popup to request runtime permission
-                    requestPermissions(permissions, PermissionActivity.PERMISSION_CODE)
+                    ActivityCompat.requestPermissions(this,permissions, PermissionActivity.PERMISSION_CODE)
                 }
                 else{
                     //permission already granted
                     startActivity(permIntent)
                 }
-            }
-            else{
-                //system OS is < Marshmallow
-                startActivity(permIntent)
-            }
-
         }
 
         buttonLogOut.setOnClickListener{

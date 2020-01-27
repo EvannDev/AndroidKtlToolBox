@@ -21,7 +21,10 @@ import  android.app.AlertDialog
 import android.content.DialogInterface
 import android.provider.ContactsContract
 import android.provider.MediaStore
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import fr.isen.debailliencourt.android.dataClass.Contact
 
 
 class PermissionActivity : AppCompatActivity() {
@@ -31,7 +34,6 @@ class PermissionActivity : AppCompatActivity() {
         //Permission code
         private const val IMAGE_PICK_REQUEST = 1000
         private const val CAMERA_PICK_REQUEST = 4444
-        private const val CONTACT_PICK_REQUEST = 1001
 
         const val PERMISSION_CODE = 1002
     }
@@ -126,21 +128,26 @@ class PermissionActivity : AppCompatActivity() {
         }
     }
 
+
     private fun displayContacts(){
         val users: ArrayList<String> = ArrayList()
 
         val cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null,null)
-
-        while(cursor!!.moveToNext()){
-            users.add(Contact(cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
-                                    cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))).name)
-
-            users.add(Contact(cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
-                cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))).phone)
+        cursor?.let {
+            while (it.moveToNext()) {
+                users.add(
+                    Contact(
+                        it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
+                        it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                    ).name + " " +
+                            Contact(
+                                it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
+                                it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                            ).phone
+                )
+            }
+            it.close()
         }
-
-        cursor.close()
-
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = UsersAdapter(users)
     }
@@ -150,11 +157,21 @@ class PermissionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permissions)
 
+        val floatingActionButton: View = findViewById(R.id.floatingActionButton)
+        floatingActionButton.setOnClickListener { view ->
+            Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show()
+        }
+
+        //RecyclerView
         displayContacts()
 
+        //Location
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         getLastLocation()
 
+        //Pick Image
         pictGalleryPerm.setOnClickListener{
                 withItems()
         }
@@ -186,9 +203,8 @@ class PermissionActivity : AppCompatActivity() {
         else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PICK_REQUEST){
             val imageBitmap = data?.extras?.get("data") as Bitmap
             pictGalleryPerm.setImageBitmap(imageBitmap)
+
         }
 
-        else if (resultCode == Activity.RESULT_OK && requestCode == CONTACT_PICK_REQUEST){
-        }
     }
 }
