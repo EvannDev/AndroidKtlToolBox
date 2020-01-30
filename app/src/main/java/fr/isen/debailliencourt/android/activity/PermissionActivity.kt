@@ -1,5 +1,6 @@
 package fr.isen.debailliencourt.android.activity
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -22,6 +23,8 @@ import android.content.DialogInterface
 import android.provider.ContactsContract
 import android.provider.MediaStore
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import fr.isen.debailliencourt.android.dataClass.Contact
@@ -128,7 +131,6 @@ class PermissionActivity : AppCompatActivity() {
         }
     }
 
-
     private fun displayContacts(){
         val users: ArrayList<String> = ArrayList()
 
@@ -139,7 +141,7 @@ class PermissionActivity : AppCompatActivity() {
                     Contact(
                         it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
                         it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                    ).name + " " +
+                    ).name + " : " +
                             Contact(
                                 it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)),
                                 it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
@@ -173,7 +175,20 @@ class PermissionActivity : AppCompatActivity() {
 
         //Pick Image
         pictGalleryPerm.setOnClickListener{
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==    PackageManager.PERMISSION_DENIED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) ==  PackageManager.PERMISSION_DENIED)
+            {
+                //permission denied
+                val permissions = arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)
+                //show popup to request runtime permission
+                ActivityCompat.requestPermissions(this,permissions,PERMISSION_CODE)
+            }
+            else{
+                //permission already granted
                 withItems()
+            }
         }
 
     }
@@ -183,8 +198,13 @@ class PermissionActivity : AppCompatActivity() {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED){
-                    //permission from popup granted
+                    //permission
                     pickImageFromGallery()
+                }
+                else if (grantResults.isNotEmpty() && grantResults[1] ==
+                    PackageManager.PERMISSION_GRANTED){
+                    //permission from popup granted
+                    pickImageFromCamera()
                 }
                 else{
                     //permission from popup denied
@@ -199,12 +219,9 @@ class PermissionActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_REQUEST){
             pictGalleryPerm.setImageURI(data?.data)
         }
-
         else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PICK_REQUEST){
             val imageBitmap = data?.extras?.get("data") as Bitmap
             pictGalleryPerm.setImageBitmap(imageBitmap)
-
         }
-
     }
 }
