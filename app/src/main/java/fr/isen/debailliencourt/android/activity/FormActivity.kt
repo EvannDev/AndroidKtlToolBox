@@ -18,7 +18,6 @@ import java.io.File
 
 class FormActivity : AppCompatActivity() {
 
-    var buttonDate: Button? = null
     var textViewDate: TextView? = null
 
 
@@ -57,7 +56,6 @@ class FormActivity : AppCompatActivity() {
                     cal.get(Calendar.DAY_OF_MONTH),
                     cal.get(Calendar.MONTH),
                     cal.get(Calendar.YEAR)
-
                 )
             )
         }

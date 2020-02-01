@@ -37,4 +37,8 @@
     <string name="nomContact">Nom:</string>
     <string name="firstNameUser">Nom:</string>
 
+    <!-- Web -->
+    <string name="titleWebActivity">Utilisateurs Aléatoire</string>
+    <string name="buttonGenerate">Génerer</string>
+
 </resources>

@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -58,6 +57,13 @@ class HomeActivity : AppCompatActivity() {
                     //permission already granted
                     startActivity(permIntent)
                 }
+        }
+
+        val webIntent = Intent(this,
+            WebActivity::class.java)
+
+        layoutWeb.setOnClickListener{
+            startActivity(webIntent)
         }
 
         buttonLogOut.setOnClickListener{
