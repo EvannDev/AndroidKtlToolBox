@@ -45,7 +45,7 @@ class WebActivity : AppCompatActivity() {
                 titleWebActivity.text=response
                 var randomUserObj = JSONObject(response)
                 val randomUsers: RandomUsersData = Gson().fromJson<RandomUsersData>(response,RandomUsersData::class.java)
-                buttonGenerateRandomUsers.text=randomUsers?.result?.location?.country
+                buttonGenerateRandomUsers.text= randomUsers.result.location?.country
             },
             Response.ErrorListener { titleWebActivity.text = "That didn't work!" })
 

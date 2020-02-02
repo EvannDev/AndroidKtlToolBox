@@ -98,7 +98,7 @@ class FormActivity : AppCompatActivity() {
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.FRENCH)
-        textViewDate!!.text = sdf.format(cal.getTime())
+        textViewDate!!.text = sdf.format(cal.time)
     }
 
     private fun getAge(day: Int, month: Int, year: Int):Int{

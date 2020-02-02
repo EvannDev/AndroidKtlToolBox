@@ -75,7 +75,7 @@ class PermissionActivity : AppCompatActivity() {
         mLocationRequest.numUpdates = 1
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocationClient!!.requestLocationUpdates(
+        mFusedLocationClient.requestLocationUpdates(
             mLocationRequest, mLocationCallback,
             Looper.myLooper()
         )
@@ -161,7 +161,7 @@ class PermissionActivity : AppCompatActivity() {
 
         val floatingActionButton: View = findViewById(R.id.floatingActionButton)
         floatingActionButton.setOnClickListener { view ->
-            Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Here's a Test", Snackbar.LENGTH_LONG)
                 .setAction("Action", null)
                 .show()
         }
