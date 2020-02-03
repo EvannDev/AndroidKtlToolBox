@@ -1,6 +1,6 @@
 <resources>
     <!-- Manifest -->
-    <string name="app_name">AndroidToolBox</string>
+    <string name="app_name">Evann DB.</string>
 
     <!-- Login -->
     <string name="button">connexion</string>

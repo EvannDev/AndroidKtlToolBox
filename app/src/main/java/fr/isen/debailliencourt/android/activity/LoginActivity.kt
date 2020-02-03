@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         private const val GOOD_ID: String = "admin"
-        private const val GOOD_PASS: String = "1234"
+        private const val GOOD_PASS: String = "123"
         const val LOGIN_PREF: String = "login"
     }
 

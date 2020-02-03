@@ -20,7 +20,7 @@ class WebActivity : AppCompatActivity() {
     private fun displayRandomUsers() {
         val queue = Volley.newRequestQueue(this)
         val url =
-            "https://randomuser.me/api/?inc=name,location,email&results=15&noinfo&nat=fr&format=pretty"
+            "https://randomuser.me/api/?inc=name,location,email,picture&results=15&noinfo&nat=fr&format=pretty"
 
         // Request a string response from the provided URL.
         val stringRequest = StringRequest(
