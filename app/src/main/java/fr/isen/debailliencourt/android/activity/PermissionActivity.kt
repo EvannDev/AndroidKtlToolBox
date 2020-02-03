@@ -33,7 +33,7 @@ import fr.isen.debailliencourt.android.dataClass.Contact
 class PermissionActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
 
-    companion object{
+    companion object {
         //Permission code
         private const val IMAGE_PICK_REQUEST = 1000
         private const val CAMERA_PICK_REQUEST = 4444
@@ -61,8 +61,7 @@ class PermissionActivity : AppCompatActivity() {
                     valueLongitude.text = location.longitude.toString()
                 }
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
         }
     }
@@ -90,7 +89,8 @@ class PermissionActivity : AppCompatActivity() {
     }
 
     private fun isLocationEnabled(): Boolean {
-        var locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        var locationManager: LocationManager =
+            getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
         )
@@ -104,10 +104,9 @@ class PermissionActivity : AppCompatActivity() {
         {
             setTitle("Choisir:")
             setItems(items) { dialog, which ->
-                if(items[which] == "Camera"){
+                if (items[which] == "Camera") {
                     pickImageFromCamera()
-                }
-                else{
+                } else {
                     pickImageFromGallery()
                 }
             }
@@ -131,10 +130,16 @@ class PermissionActivity : AppCompatActivity() {
         }
     }
 
-    private fun displayContacts(){
+    private fun displayContacts() {
         val users: ArrayList<String> = ArrayList()
 
-        val cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null,null)
+        val cursor = contentResolver.query(
+            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            null,
+            null,
+            null,
+            null
+        )
         cursor?.let {
             while (it.moveToNext()) {
                 users.add(
@@ -174,18 +179,24 @@ class PermissionActivity : AppCompatActivity() {
         getLastLocation()
 
         //Pick Image
-        pictGalleryPerm.setOnClickListener{
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==    PackageManager.PERMISSION_DENIED ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) ==  PackageManager.PERMISSION_DENIED)
-            {
+        pictGalleryPerm.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_DENIED ||
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_DENIED
+            ) {
                 //permission denied
                 val permissions = arrayOf(
                     Manifest.permission.CAMERA,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                )
                 //show popup to request runtime permission
-                ActivityCompat.requestPermissions(this,permissions,PERMISSION_CODE)
-            }
-            else{
+                ActivityCompat.requestPermissions(this, permissions, PERMISSION_CODE)
+            } else {
                 //permission already granted
                 withItems()
             }
@@ -193,20 +204,24 @@ class PermissionActivity : AppCompatActivity() {
 
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
+                    PackageManager.PERMISSION_GRANTED
+                ) {
                     //permission
                     pickImageFromGallery()
-                }
-                else if (grantResults.isNotEmpty() && grantResults[1] ==
-                    PackageManager.PERMISSION_GRANTED){
+                } else if (grantResults.isNotEmpty() && grantResults[1] ==
+                    PackageManager.PERMISSION_GRANTED
+                ) {
                     //permission from popup granted
                     pickImageFromCamera()
-                }
-                else{
+                } else {
                     //permission from popup denied
                     Toast.makeText(this, "Permission refusée", Toast.LENGTH_SHORT).show()
                 }
@@ -216,10 +231,9 @@ class PermissionActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_REQUEST){
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_REQUEST) {
             pictGalleryPerm.setImageURI(data?.data)
-        }
-        else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PICK_REQUEST){
+        } else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PICK_REQUEST) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             pictGalleryPerm.setImageBitmap(imageBitmap)
         }

@@ -35,15 +35,16 @@ class FormActivity : AppCompatActivity() {
 
         textViewDate!!.text = "--/--/----"
 
-        val dateSetListener = DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, day: Int ->
-            cal.set(Calendar.YEAR, year)
-            cal.set(Calendar.MONTH, month)
-            cal.set(Calendar.DAY_OF_MONTH, day)
-            updateDateInView()
-        }
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, day: Int ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, month)
+                cal.set(Calendar.DAY_OF_MONTH, day)
+                updateDateInView()
+            }
 
 
-        buttonRead.setOnClickListener{
+        buttonRead.setOnClickListener {
             showDataFromFile()
         }
 
@@ -61,25 +62,28 @@ class FormActivity : AppCompatActivity() {
         }
 
         textViewDate?.setOnClickListener {
-            DatePickerDialog(this@FormActivity,
+            DatePickerDialog(
+                this@FormActivity,
                 dateSetListener,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)).show()
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
     }
 
-    private fun saveDataToFile(lastName: String, firstName: String, date: String, age: Int){
-        val data = "{$LAST_NAME_KEY: '$lastName', $FIRST_NAME_KEY: '$firstName', $DATE_KEY: '$date', $AGE_KEY: '$age'}"
+    private fun saveDataToFile(lastName: String, firstName: String, date: String, age: Int) {
+        val data =
+            "{$LAST_NAME_KEY: '$lastName', $FIRST_NAME_KEY: '$firstName', $DATE_KEY: '$date', $AGE_KEY: '$age'}"
 
         File(cacheDir.absolutePath + JSON_FILE).writeText(data)
         Toast.makeText(this, "Données sauvegardé", Toast.LENGTH_SHORT).show()
     }
 
-    private fun showDataFromFile(){
+    private fun showDataFromFile() {
         val dataJson: String = File(cacheDir.absolutePath + JSON_FILE).readText()
 
-        if(dataJson.isNotEmpty()){
+        if (dataJson.isNotEmpty()) {
             val jsonObject = JSONObject(dataJson)
 
             val strDate: String = jsonObject.optString(DATE_KEY)
@@ -101,27 +105,26 @@ class FormActivity : AppCompatActivity() {
         textViewDate!!.text = sdf.format(cal.time)
     }
 
-    private fun getAge(day: Int, month: Int, year: Int):Int{
+    private fun getAge(day: Int, month: Int, year: Int): Int {
         val dateOfBirth = Calendar.getInstance()
         val today = Calendar.getInstance()
 
-        dateOfBirth.set(year,month,day)
+        dateOfBirth.set(year, month, day)
 
         var age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR)
 
-        if((today.get(Calendar.DAY_OF_MONTH) < dateOfBirth.get(Calendar.DAY_OF_MONTH) &&
-            today.get(Calendar.MONTH) == dateOfBirth.get(Calendar.MONTH)) ||
-            (today.get(Calendar.MONTH) < dateOfBirth.get(Calendar.MONTH)))
-        {
-            return age -1
-        }
-        else{
+        if ((today.get(Calendar.DAY_OF_MONTH) < dateOfBirth.get(Calendar.DAY_OF_MONTH) &&
+                    today.get(Calendar.MONTH) == dateOfBirth.get(Calendar.MONTH)) ||
+            (today.get(Calendar.MONTH) < dateOfBirth.get(Calendar.MONTH))
+        ) {
+            return age - 1
+        } else {
             return age
         }
 
     }
 
-    companion object{
+    companion object {
         private const val JSON_FILE = "data.json"
         private const val LAST_NAME_KEY = "lastName"
         private const val FIRST_NAME_KEY = "firstName"

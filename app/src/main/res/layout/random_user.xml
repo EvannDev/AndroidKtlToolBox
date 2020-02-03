@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewRandomUser"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,22 +20,23 @@
 
     <TextView
         android:id="@+id/randomUserName"
-        android:layout_width="134dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_width="238dp"
+        android:layout_height="26dp"
+        android:text="@string/text"
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toEndOf="@+id/imageViewRandomUser"
+        app:layout_constraintTop_toTopOf="@+id/imageViewRandomUser"
+        app:layout_constraintVertical_bias="0.121" />
 
     <TextView
         android:id="@+id/randomUserAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/text"
         app:layout_constraintEnd_toEndOf="@+id/randomUserName"
         app:layout_constraintStart_toStartOf="@+id/randomUserName"
         app:layout_constraintTop_toBottomOf="@+id/randomUserName" />
@@ -44,7 +45,8 @@
         android:id="@+id/randomUserMail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/text"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@+id/randomUserAddress"
         app:layout_constraintStart_toStartOf="@+id/randomUserAddress"
         app:layout_constraintTop_toBottomOf="@+id/randomUserAddress" />

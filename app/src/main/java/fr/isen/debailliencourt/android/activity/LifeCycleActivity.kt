@@ -21,17 +21,18 @@ class LifeCycleActivity : AppCompatActivity() {
         val frag1 = LifeCycleFrag()
         val frag2 = LifeCycleFrag2()
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.layoutFragment,frag1)
+        transaction.add(R.id.layoutFragment, frag1)
         transaction.commit()
 
-        buttonFrag.setOnClickListener{
-            supportFragmentManager.beginTransaction().replace(R.id.layoutFragment, (if (frag1.isVisible) frag2 else frag1)).commit()
+        buttonFrag.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.layoutFragment, (if (frag1.isVisible) frag2 else frag1)).commit()
 
         }
     }
 
-    private fun notification(message : String, isActive : Boolean){
-        if(isActive)
+    private fun notification(message: String, isActive: Boolean) {
+        if (isActive)
             lifeCycleText.text = message
         else
             Log.d("TAG", message)

@@ -14,9 +14,9 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var sharedPreferences: SharedPreferences
 
-    companion object{
+    companion object {
         private const val GOOD_ID: String = "admin"
-        private const val GOOD_PASS: String  ="1234"
+        private const val GOOD_PASS: String = "1234"
         const val LOGIN_PREF: String = "login"
     }
 
@@ -26,45 +26,45 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(LOGIN_PREF, Context.MODE_PRIVATE)
         val savedIdentifiant: String? = sharedPreferences.getString("id", "")
-        val savedMdp: String? = sharedPreferences.getString("mdp","")
+        val savedMdp: String? = sharedPreferences.getString("mdp", "")
 
 
-        if(savedIdentifiant == GOOD_ID && savedMdp == GOOD_PASS){
+        if (savedIdentifiant == GOOD_ID && savedMdp == GOOD_PASS) {
             goToHome()
         }
 
-        button.setOnClickListener{
+        button.setOnClickListener {
             doLogin()
         }
     }
 
-    private fun doLogin(){
+    private fun doLogin() {
         val username = UserEdit.text.toString()
         val password = PassEdit.text.toString()
 
         val invalidMessage = "username/password is not valid"
 
-        if(username == GOOD_ID && password== GOOD_PASS)
-        {
-            saveUserCredential(username,password)
-            Toast.makeText(this,"Data Stored",Toast.LENGTH_LONG).show()
+        if (username == GOOD_ID && password == GOOD_PASS) {
+            saveUserCredential(username, password)
+            Toast.makeText(this, "Data Stored", Toast.LENGTH_LONG).show()
             goToHome()
-        }
-        else{
+        } else {
             Toast.makeText(this, invalidMessage, Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun saveUserCredential(identifiant: String, mdp: String){
-        val editor : SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putString("id",identifiant)
-        editor.putString("mdp",mdp)
+    private fun saveUserCredential(identifiant: String, mdp: String) {
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString("id", identifiant)
+        editor.putString("mdp", mdp)
         editor.apply()
     }
 
-    private fun goToHome(){
-        val homeIntent : Intent =  Intent(this,
-            HomeActivity::class.java)
+    private fun goToHome() {
+        val homeIntent: Intent = Intent(
+            this,
+            HomeActivity::class.java
+        )
         startActivity(homeIntent)
     }
 }

@@ -40,5 +40,6 @@
     <!-- Web -->
     <string name="titleWebActivity">Utilisateurs Aléatoire</string>
     <string name="buttonGenerate">Génerer</string>
+    <string name="text">Text</string>
 
 </resources>
